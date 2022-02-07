@@ -1,3 +1,4 @@
+import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:superwoman/model/project.dart';
 import 'package:superwoman/pallete.dart';
@@ -22,7 +23,7 @@ class _CreateProjectPageState extends State<CreateProjectPage> {
   String imageUrl = "https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg";
   final _formKey = GlobalKey<FormState>();
 
-  void createProject() {
+  void createProject(BuildContext context) async {
     if (_formKey.currentState?.validate() ?? false) {
 
       Project project     = new Project();
@@ -31,14 +32,17 @@ class _CreateProjectPageState extends State<CreateProjectPage> {
       project.description = descriptionController.text;
       project.budget      = double.parse(budgetController.text);
       project.image       = imageUrl;
+      project.closingDate = closingDate;
 
       locator<ProjectService>().saveProject(project);
-      _showConfirmDialog();
+      await _showConfirmDialog(context);
+
       Navigator.of(context).pop(true);
+
     }
   }
-  void _showConfirmDialog() async {
-    await showDialog<void>(
+  _showConfirmDialog(BuildContext context) async {
+     return await showDialog<void>(
       context: context,
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
@@ -105,10 +109,14 @@ class _CreateProjectPageState extends State<CreateProjectPage> {
         child: Container(
           padding: EdgeInsets.all(size.width * 0.01) +
               EdgeInsets.only(left: size.width * 0.05, right: size.width * 0.05 ),
-          child: Column(
+          child: ListView
+            (
 
-            crossAxisAlignment: CrossAxisAlignment.start,
+            //crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              SizedBox(
+                height: 10,
+              ),
               Center(
                 child: AvatarSelector(imageUrl),
               ),
@@ -135,7 +143,7 @@ class _CreateProjectPageState extends State<CreateProjectPage> {
               TextInput(
                 "Link",
                 webLinkController,
-                icon: Icons.drive_file_rename_outline,
+                icon: Icons.link,
                 regexp: RegExp(r".{5,50}$"),
                 errorMsg: "Link must be between five  and 50 characters long.",
               ),
@@ -147,7 +155,7 @@ class _CreateProjectPageState extends State<CreateProjectPage> {
               TextInput(
                 "Description",
                 descriptionController,
-                icon: Icons.drive_file_rename_outline,
+                icon: Icons.insert_drive_file,
                 regexp: RegExp(r".{5,200}$"),
                 errorMsg: "Must be between five and 200 characters long.",
               ),
@@ -159,7 +167,7 @@ class _CreateProjectPageState extends State<CreateProjectPage> {
               TextInput(
                 "Budget",
                 budgetController,
-                icon: Icons.drive_file_rename_outline,
+                icon: Icons.attach_money,
                 inputType: TextInputType.number,
                 regexp: RegExp(r".{1,10}$"),
                 errorMsg: "Must be a number",
@@ -172,21 +180,21 @@ class _CreateProjectPageState extends State<CreateProjectPage> {
               Row(
                 //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(closingDate.toIso8601String()),
+                  Text(formatDate(closingDate, [dd, '/', mm, '/', yyyy])),
                   SizedBox(
                     width: size.width * 0.02,
                   ),
-                  ElevatedButton(
+                  TextButton(
                       onPressed: () => changeClosingDate(),
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Icon(Icons.calendar_today_sharp),
+                        child: Text("Change"),
                       )),
                 ],
               ),
               SizedBox(height: 10),
               ElevatedButton(
-                  onPressed: () => createProject(),
+                  onPressed: () => createProject(context),
                   child: Text("Create project"))
             ],
           ),

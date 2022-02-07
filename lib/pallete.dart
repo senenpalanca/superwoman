@@ -14,5 +14,5 @@ const Color cardTextColor   = Colors.white;
 const TextStyle titleInputStyle = const TextStyle(
   fontSize: 20,
   fontWeight: FontWeight.bold,
-
 );
+  const TextStyle linkStyle     = const TextStyle(color: Colors.blue);

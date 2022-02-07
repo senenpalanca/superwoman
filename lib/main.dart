@@ -4,7 +4,7 @@ import 'package:superwoman/services/service-locator.dart';
 import 'dashboard.dart';
 
 void main() async {
-  setupLocator();
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: FirebaseOptions(
       apiKey: "AIzaSyC0Tw3TmkNbwAg40E3aznIXWpSLJ9Xj2lI",
@@ -13,6 +13,7 @@ void main() async {
       projectId: "superwoman-adf31",
     ),
   );
+  setupLocator();
   runApp(const MyApp());
 }
 
