@@ -33,8 +33,8 @@ class _TextInputState extends State<TextInput> {
     return Padding(
         padding: const EdgeInsets.symmetric(vertical: 10.0),
         child: Container(
-          height: isInvalid ? size.height * 0.08 * 1.2 : null,
-          width: size.width * 0.8,
+          height: isInvalid ? size.height * 0.096 : null,
+          //width: size.width * 0.8,
           decoration: BoxDecoration(
             //color: Colors.grey[300].withOpacity(0.5),
             borderRadius: BorderRadius.circular(16),

@@ -10,3 +10,9 @@ const double cardProportion = 1.545454;
 const double cardHeight     = 120;
 const Color cardTitleColor  = Colors.white;
 const Color cardTextColor   = Colors.white;
+
+const TextStyle titleInputStyle = const TextStyle(
+  fontSize: 20,
+  fontWeight: FontWeight.bold,
+
+);

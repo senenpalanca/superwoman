@@ -23,6 +23,7 @@ class Project{
   toMap() {
     return {
       "id": id,
+      "name": name,
       "webLink": webLink,
       "description": description,
       "image": image,
@@ -36,6 +37,7 @@ class Project{
 
     return Project.fromData(
       id: map['id'],
+      name: map['name'],
       webLink: map['webLink'],
       description: map['description'],
       budget: double.parse(map['budget'].toString()),
