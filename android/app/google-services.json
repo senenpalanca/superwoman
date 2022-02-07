@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "587196116231",
+    "project_id": "superwoman-adf31",
+    "storage_bucket": "superwoman-adf31.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:587196116231:android:05cbd70bd8b589802829a2",
+        "android_client_info": {
+          "package_name": "com.senenpalanca.superwoman"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "587196116231-gde29798g5sl74ldi7irm24e90dcm6sj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0Tw3TmkNbwAg40E3aznIXWpSLJ9Xj2lI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "587196116231-gde29798g5sl74ldi7irm24e90dcm6sj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

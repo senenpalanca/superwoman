@@ -42,7 +42,7 @@ class MainPage extends StatelessWidget {
 
 
   Widget _buildTemplateCard(BuildContext context, String title,
-      String description, IconData leftIcon) {
+      String description, IconData icon) {
     Size size = MediaQuery.of(context).size;
     return  Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -72,7 +72,7 @@ class MainPage extends StatelessWidget {
               ),
               SizedBox(width: 6,),
               Icon(
-                leftIcon,
+                icon,
                 color: cardTextColor,
                 // size: size.height * 0.02,
               )

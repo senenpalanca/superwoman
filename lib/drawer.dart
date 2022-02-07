@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:superwoman/pages/main-page.dart';
+import 'package:superwoman/pages/projects-page.dart';
 import 'package:superwoman/pallete.dart';
 
 
@@ -30,7 +31,7 @@ class _MyDrawerState extends State<MyDrawer> {
             ),
           ),
           _buildTile("Dashboard",Icons.admin_panel_settings, MainPage()),
-          _buildTile("Projects", Icons.file_copy,MainPage()),
+          _buildTile("Projects", Icons.file_copy,ProjectsPage(widget.putOnTop)),
           _buildTile("Stakeholders", Icons.group,MainPage()),
         ],
       ),

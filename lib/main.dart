@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:superwoman/services/service-locator.dart';
 import 'dashboard.dart';
 
 void main() {
+  setupLocator();
   runApp(const MyApp());
 }
 
