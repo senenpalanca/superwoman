@@ -4,12 +4,10 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:superwoman/pallete.dart';
-import 'package:superwoman/services/service-locator.dart';
+import 'package:superwoman/service-locator.dart';
 import 'package:superwoman/services/storage.service.dart';
 
 class AvatarSelector extends StatefulWidget {
-
-
   String image;
   AvatarSelector(this.image, {Key? key}) : super(key: key);
 
@@ -26,14 +24,18 @@ class _AvatarSelectorState extends State<AvatarSelector> {
       onTap: () => _showBottomSheet(),
       child: Stack(
         children: [
-         // Container(width: 120, height: 120,),
+          // Container(width: 120, height: 120,),
           CircleAvatar(
             radius: 60.0,
             backgroundColor: Colors.grey,
             backgroundImage: NetworkImage(widget.image),
           ),
-          Positioned(right: 0, bottom: 0 ,child: CircleButton(iconData: Icons.repeat,))
-
+          Positioned(
+              right: 0,
+              bottom: 0,
+              child: CircleButton(
+                iconData: Icons.repeat,
+              ))
         ],
       ),
     );
@@ -54,23 +56,20 @@ class _AvatarSelectorState extends State<AvatarSelector> {
                         _uploadImgFromGallery();
                         Navigator.of(context).pop();
                       }),
-
-
                 ],
               ),
             ),
           );
         });
   }
+
   _uploadImgFromGallery() async {
     await ImagePicker()
         .pickImage(source: ImageSource.gallery, imageQuality: 50)
         .then((image) {
-          if(image!=null){
-           _uploadImgToFirebase(image);
-          }
-
-
+      if (image != null) {
+        _uploadImgToFirebase(image);
+      }
     });
   }
 

@@ -2,8 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:superwoman/model/stakeholder.dart';
 import 'package:uuid/uuid.dart';
 
-class StakeholderService{
-
+class StakeholderService {
   final collection = 'stakeholders';
   final uuid = Uuid();
 
@@ -15,21 +14,14 @@ class StakeholderService{
   }
 
   getAll() async {
-
-    var x = await FirebaseFirestore.instance
-        .collection(collection)
-        .get();
+    var x = await FirebaseFirestore.instance.collection(collection).get();
 
     return x.docs.map((e) => Stakeholder.fromMap(e.data())).toList();
   }
 
   getNoStakeholders() async {
-
-    var x = await FirebaseFirestore.instance
-        .collection(collection)
-        .get();
+    var x = await FirebaseFirestore.instance.collection(collection).get();
 
     return x.docs.length;
   }
-
 }

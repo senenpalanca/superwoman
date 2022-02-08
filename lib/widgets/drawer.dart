@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:superwoman/pages/main-page.dart';
+import 'package:superwoman/pages/Stakeholders/stakeholders-page.dart';
+import 'package:superwoman/pages/dashboard.dart';
 import 'package:superwoman/pages/Projects/projects-page.dart';
 import 'package:superwoman/pallete.dart';
 
-
 class MyDrawer extends StatefulWidget {
-
-  final Function putOnTop;
-  MyDrawer( this.putOnTop,  {Key? key,}) : super(key: key);
+  //final Function? putOnTop;
+  MyDrawer({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<MyDrawer> createState() => _MyDrawerState();
@@ -30,9 +31,9 @@ class _MyDrawerState extends State<MyDrawer> {
               style: TextStyle(color: titleColor),
             ),
           ),
-          _buildTile("Dashboard",Icons.admin_panel_settings, MainPage()),
-          _buildTile("Projects", Icons.file_copy,ProjectsPage()),
-          _buildTile("Stakeholders", Icons.group,MainPage()),
+          _buildTile("Dashboard", Icons.admin_panel_settings, Dashboard()),
+          _buildTile("Projects", Icons.file_copy, ProjectsPage()),
+          _buildTile("Stakeholders", Icons.group, StakeholdersPage()),
         ],
       ),
     );
@@ -42,17 +43,24 @@ class _MyDrawerState extends State<MyDrawer> {
     return Container(
       color: activeColor,
       child: ListTile(
-        leading: Icon(icon, color: iconColor,),
-        title: Text(name,style: TextStyle(color: textColor),),
-        onTap: () => _showPage(page),
+        leading: Icon(
+          icon,
+          color: iconColor,
+        ),
+        title: Text(
+          name,
+          style: TextStyle(color: textColor),
+        ),
+        onTap: () => _goTo(page),
       ),
     );
   }
 
-  _showPage(Widget page){
-    //Callback Func
-    widget.putOnTop(page);
-    Navigator.of(context).pop();
+  _goTo(Widget page) {
+    Navigator.pop(context);
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => page),
+    );
   }
-
 }

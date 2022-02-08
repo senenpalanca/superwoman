@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 
 //Personalized text input
 class TextInput extends StatefulWidget {
-  TextInput(
-   this.hint,
-   this.controller, {Key? key,
-        this.icon,
-        this.inputType,
-        this.inputAction,
-        this.regexp,
-        this.errorMsg})
+  TextInput(this.hint, this.controller,
+      {Key? key,
+      this.icon,
+      this.inputType,
+      this.inputAction,
+      this.regexp,
+      this.errorMsg})
       : super(key: key);
 
   final IconData? icon;
@@ -42,7 +41,7 @@ class _TextInputState extends State<TextInput> {
           child: Center(
             child: TextFormField(
               validator: (value) {
-                if(value != null){
+                if (value != null) {
                   bool cond = widget.regexp!.hasMatch(value);
 
                   if (!cond) {
@@ -70,15 +69,16 @@ class _TextInputState extends State<TextInput> {
                 prefixIcon: widget.icon == null
                     ? null
                     : Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                  child: Icon(
-                    widget.icon,
-                    size: 28,
-                    color: Colors.grey,
-                  ),
-                ),
+                        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                        child: Icon(
+                          widget.icon,
+                          size: 28,
+                          color: Colors.grey,
+                        ),
+                      ),
                 hintText: widget.hint,
-                hintStyle: TextStyle(fontSize: 18, color: Colors.grey, height: 1.5),
+                hintStyle:
+                    TextStyle(fontSize: 18, color: Colors.grey, height: 1.5),
                 errorStyle: TextStyle(fontSize: 10),
                 focusedBorder: OutlineInputBorder(
                   borderSide: new BorderSide(color: Colors.white),

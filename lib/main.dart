@@ -1,7 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:superwoman/services/service-locator.dart';
-import 'dashboard.dart';
+import 'package:superwoman/service-locator.dart';
+
+import 'pages/dashboard.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,11 +21,11 @@ void main() async {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: const Dashboard(title: 'ONG Dashboard'),
+      debugShowCheckedModeBanner: false,
+      home: Dashboard(),
     );
   }
 }

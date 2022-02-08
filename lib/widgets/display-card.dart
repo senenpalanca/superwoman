@@ -1,26 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:superwoman/pallete.dart';
 
-class DisplayCard extends StatefulWidget {
+
+class DisplayCard extends StatelessWidget {
   Color color;
   Widget child;
-  DisplayCard(this.child, this.color, {Key? key}) : super(key: key);
 
-  @override
-  _DisplayCardState createState() => _DisplayCardState();
-}
+  DisplayCard(this.child, this.color,{Key? key}) : super(key: key);
 
-class _DisplayCardState extends State<DisplayCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-
       height: cardHeight,
-      width:  cardHeight*cardProportion,
-
+      width: cardHeight * cardProportion,
       child: Card(
-        color: widget.color,
-        child: widget.child ,
+        color: color,
+        child: child,
       ),
     );
   }

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:superwoman/model/project.dart';
 import 'package:superwoman/pallete.dart';
 import 'package:superwoman/services/project.service.dart';
-import 'package:superwoman/services/service-locator.dart';
+import 'package:superwoman/service-locator.dart';
 import 'package:superwoman/widgets/avatar-selector.dart';
 import 'package:superwoman/widgets/text-input.dart';
 
@@ -20,29 +20,30 @@ class _CreateProjectPageState extends State<CreateProjectPage> {
   TextEditingController descriptionController = TextEditingController();
   TextEditingController budgetController = TextEditingController();
   DateTime closingDate = DateTime.now();
-  String imageUrl = "https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg";
+  String imageUrl =
+      "https://ichef.bbci.co.uk/news/400/cpsprodpb/156EE/production/_113309778_gettyimages-524903696.jpg";
   final _formKey = GlobalKey<FormState>();
 
   void createProject(BuildContext context) async {
-    if (_formKey.currentState?.validate() ?? false) {
-
-      Project project     = new Project();
-      project.name        = nameController.text;
-      project.webLink     = webLinkController.text;
+    bool x = _formKey.currentState!.validate();
+    if (x) {
+      Project project = new Project();
+      project.name = nameController.text;
+      project.webLink = webLinkController.text;
       project.description = descriptionController.text;
-      project.budget      = double.parse(budgetController.text);
-      project.image       = imageUrl;
+      project.budget = double.parse(budgetController.text);
+      project.image = imageUrl;
       project.closingDate = closingDate;
 
       locator<ProjectService>().saveProject(project);
       await _showConfirmDialog(context);
 
       Navigator.of(context).pop(true);
-
     }
   }
+
   _showConfirmDialog(BuildContext context) async {
-     return await showDialog<void>(
+    return await showDialog<void>(
       context: context,
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
@@ -67,6 +68,7 @@ class _CreateProjectPageState extends State<CreateProjectPage> {
       },
     );
   }
+
   changeClosingDate() async {
     final DateTime? picked = await showDatePicker(
         context: context,
@@ -103,15 +105,15 @@ class _CreateProjectPageState extends State<CreateProjectPage> {
           "Create project",
           style: TextStyle(color: backgroundColor),
         ),
+
       ),
       body: Form(
         key: _formKey,
         child: Container(
           padding: EdgeInsets.all(size.width * 0.01) +
-              EdgeInsets.only(left: size.width * 0.05, right: size.width * 0.05 ),
-          child: ListView
-            (
-
+              EdgeInsets.only(
+                  left: size.width * 0.05, right: size.width * 0.05),
+          child: ListView(
             //crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
@@ -133,7 +135,7 @@ class _CreateProjectPageState extends State<CreateProjectPage> {
                 icon: Icons.drive_file_rename_outline,
                 regexp: RegExp(r".{5,20}$"),
                 errorMsg:
-                    "User name must be between five and 20 characters long.",
+                    "Project name must be between five and 20 characters long",
               ),
               SizedBox(height: 10),
               const Text(
@@ -144,8 +146,8 @@ class _CreateProjectPageState extends State<CreateProjectPage> {
                 "Link",
                 webLinkController,
                 icon: Icons.link,
-                regexp: RegExp(r".{5,50}$"),
-                errorMsg: "Link must be between five  and 50 characters long.",
+                regexp: RegExp(r".{5,100}$"),
+                errorMsg: "Link must be between five and 100 characters long",
               ),
               SizedBox(height: 10),
               const Text(
@@ -156,8 +158,8 @@ class _CreateProjectPageState extends State<CreateProjectPage> {
                 "Description",
                 descriptionController,
                 icon: Icons.insert_drive_file,
-                regexp: RegExp(r".{5,200}$"),
-                errorMsg: "Must be between five and 200 characters long.",
+                regexp: RegExp(r".{0,200}$"),
+                errorMsg: "Only can be up to 200 characters long",
               ),
               SizedBox(height: 10),
               const Text(
@@ -170,19 +172,15 @@ class _CreateProjectPageState extends State<CreateProjectPage> {
                 icon: Icons.attach_money,
                 inputType: TextInputType.number,
                 regexp: RegExp(r".{1,10}$"),
-                errorMsg: "Must be a number",
+                errorMsg: "Cannot be empty and must be a number",
               ),
               SizedBox(height: 10),
-              const Text(
-                "Closing date",
-                style: titleInputStyle,
-              ),
               Row(
-                //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(formatDate(closingDate, [dd, '/', mm, '/', yyyy])),
-                  SizedBox(
-                    width: size.width * 0.02,
+                  const Text(
+                    "Closing date",
+                    style: titleInputStyle,
                   ),
                   TextButton(
                       onPressed: () => changeClosingDate(),
@@ -191,6 +189,10 @@ class _CreateProjectPageState extends State<CreateProjectPage> {
                         child: Text("Change"),
                       )),
                 ],
+              ),
+              Text(
+                formatDate(closingDate, [dd, '/', mm, '/', yyyy]),
+                style: TextDateStyle,
               ),
               SizedBox(height: 10),
               ElevatedButton(
@@ -202,6 +204,4 @@ class _CreateProjectPageState extends State<CreateProjectPage> {
       ),
     );
   }
-
-
 }

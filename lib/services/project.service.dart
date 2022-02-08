@@ -2,8 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:superwoman/model/project.dart';
 import 'package:uuid/uuid.dart';
 
-class ProjectService{
-
+class ProjectService {
   final collection = 'projects';
   final uuid = Uuid();
 
@@ -15,7 +14,6 @@ class ProjectService{
   }
 
   getAll() async {
-
     var x = await FirebaseFirestore.instance
         .collection(collection)
         .orderBy("closingDate", descending: true)
@@ -25,22 +23,19 @@ class ProjectService{
   }
 
   getNoProjects() async {
-
-    var x = await FirebaseFirestore.instance
-        .collection(collection)
-        .get();
+    var x = await FirebaseFirestore.instance.collection(collection).get();
 
     return x.docs.length;
   }
+
   getMoneyRaised() async {
+    var x = await FirebaseFirestore.instance.collection(collection).get();
 
-    var x = await FirebaseFirestore.instance
-        .collection(collection)
-        .get();
-
-    List projects =  x.docs.map((e) => Project.fromMap(e.data())).toList();
+    List projects = x.docs.map((e) => Project.fromMap(e.data())).toList();
     double sum = 0;
-    projects.forEach((element) {sum += element.budget;});
+    projects.forEach((element) {
+      sum += element.budget;
+    });
     return sum;
   }
 }

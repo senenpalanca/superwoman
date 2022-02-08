@@ -6,8 +6,6 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:superwoman/utils/file.utils.dart';
 
-
-
 class StorageService {
   final FirebaseStorage _storage = FirebaseStorage.instance;
 
@@ -21,11 +19,8 @@ class StorageService {
 
   Future<Reference> uploadBytes(f, String name,
       {String mimeType = "image/png"}) async {
-    final Reference ref =
-    _storage.ref().child(name);
+    final Reference ref = _storage.ref().child(name);
     try {
-
-
       // Create your custom metadata.
       SettableMetadata metadata = SettableMetadata(contentType: mimeType);
 
@@ -33,7 +28,7 @@ class StorageService {
 
       //Get task progress
       uploadTask.snapshotEvents.listen(
-            (snapshot) {
+        (snapshot) {
           final progress = (snapshot.bytesTransferred / snapshot.totalBytes);
           print('Task state: ${snapshot.state}');
           print('Progress: ${(progress * 100).toString()}%');
@@ -62,9 +57,8 @@ class StorageService {
     print("downloadImage");
     File f = new File(localPath);
     f.create();
-    if(bytes != null){
+    if (bytes != null) {
       f.writeAsBytesSync(bytes);
-
     }
 
     return "";
