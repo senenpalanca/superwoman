@@ -19,7 +19,12 @@ class _ProjectsPageState extends State<ProjectsPage> {
     return MyScaffold(
       showTitle: "Projects",
       actions: [
-        IconButton(onPressed: () => _createProject(), icon: Icon(Icons.add, color: Colors.blue,)),
+        IconButton(
+            onPressed: () => _createProject(),
+            icon: Icon(
+              Icons.add,
+              color: Colors.blue,
+            )),
       ],
       body: Container(
         child: StreamBuilder(
@@ -82,7 +87,7 @@ class _ProjectsPageState extends State<ProjectsPage> {
                       .map(
                         (project) => DataRow(cells: [
                           DataCell(
-                          Text(project.name),
+                            Text(project.name),
                           ),
                           DataCell(
                             Text(project.description),
@@ -124,9 +129,7 @@ class _ProjectsPageState extends State<ProjectsPage> {
   _createProject() {
     Navigator.push(
       context,
-      MaterialPageRoute(
-          builder: (context) => const CreateProjectPage()),
+      MaterialPageRoute(builder: (context) => const CreateProjectPage()),
     ).then((value) => setState(() {}));
   }
 }
-

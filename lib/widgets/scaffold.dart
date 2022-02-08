@@ -13,7 +13,6 @@ class MyScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       appBar: AppBar(
         title: Text(showTitle ?? "ONG Dashboard",
             style: TextStyle(color: backgroundColor)),

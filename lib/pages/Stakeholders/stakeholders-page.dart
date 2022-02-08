@@ -1,8 +1,5 @@
-import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
-import 'package:superwoman/pages/Projects/create-project-page.dart';
 import 'package:superwoman/pages/Stakeholders/create-stakeholder-page.dart';
-import 'package:superwoman/services/project.service.dart';
 import 'package:superwoman/services/stakeholder.service.dart';
 import 'package:superwoman/widgets/scaffold.dart';
 
@@ -16,13 +13,17 @@ class StakeholdersPage extends StatefulWidget {
 }
 
 class _StakeholdersPageState extends State<StakeholdersPage> {
-
   @override
   Widget build(BuildContext context) {
     return MyScaffold(
       showTitle: "Stakeholders",
       actions: [
-        IconButton(onPressed: () => _createStakeholder(), icon: Icon(Icons.add, color: Colors.blue,)),
+        IconButton(
+            onPressed: () => _createStakeholder(),
+            icon: Icon(
+              Icons.add,
+              color: Colors.blue,
+            )),
       ],
       body: Container(
         child: StreamBuilder(
@@ -43,7 +44,6 @@ class _StakeholdersPageState extends State<StakeholdersPage> {
   }
 
   Widget _buildView(BuildContext context, List stakeholders) {
-
     return Column(
       children: [
         Expanded(
@@ -86,19 +86,23 @@ class _StakeholdersPageState extends State<StakeholdersPage> {
                       .map(
                         (stakeholder) => DataRow(cells: [
                           DataCell(
-                             Text(stakeholder.name),
+                            Text(stakeholder.name),
                           ),
                           DataCell(
                             Text(stakeholder.email),
                           ),
                           DataCell(
-                            Text(stakeholder.webLink, style: TextStyle(color: Colors.blue),),
+                            Text(
+                              stakeholder.webLink,
+                              style: TextStyle(color: Colors.blue),
+                            ),
                           ),
                           DataCell(
                             Text(" ${stakeholder.amount} \$"),
                           ),
                           DataCell(
-                            Text((stakeholder.projects?.length??0).toString()),
+                            Text(
+                                (stakeholder.projects?.length ?? 0).toString()),
                           ),
                         ]),
                       )
@@ -125,9 +129,7 @@ class _StakeholdersPageState extends State<StakeholdersPage> {
   _createStakeholder() {
     Navigator.push(
       context,
-      MaterialPageRoute(
-          builder: (context) => const CreateStakeholderPage()),
+      MaterialPageRoute(builder: (context) => const CreateStakeholderPage()),
     ).then((value) => setState(() {}));
   }
 }
-

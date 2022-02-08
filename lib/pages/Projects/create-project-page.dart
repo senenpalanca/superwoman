@@ -2,8 +2,8 @@ import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:superwoman/model/project.dart';
 import 'package:superwoman/pallete.dart';
-import 'package:superwoman/services/project.service.dart';
 import 'package:superwoman/service-locator.dart';
+import 'package:superwoman/services/project.service.dart';
 import 'package:superwoman/widgets/avatar-selector.dart';
 import 'package:superwoman/widgets/text-input.dart';
 
@@ -105,7 +105,6 @@ class _CreateProjectPageState extends State<CreateProjectPage> {
           "Create project",
           style: TextStyle(color: backgroundColor),
         ),
-
       ),
       body: Form(
         key: _formKey,
@@ -150,7 +149,8 @@ class _CreateProjectPageState extends State<CreateProjectPage> {
                       webLinkController,
                       icon: Icons.link,
                       regexp: RegExp(r".{5,100}$"),
-                      errorMsg: "Link must be between five and 100 characters long",
+                      errorMsg:
+                          "Link must be between five and 100 characters long",
                     ),
                     SizedBox(height: 10),
                     const Text(
@@ -198,14 +198,13 @@ class _CreateProjectPageState extends State<CreateProjectPage> {
                       style: TextDateStyle,
                     ),
                     SizedBox(height: 10),
-
                   ],
                 ),
               ),
             ),
             Divider(),
             Padding(
-              padding: EdgeInsets.all(size.height*0.02),
+              padding: EdgeInsets.all(size.height * 0.02),
               child: ElevatedButton(
                   onPressed: () => createProject(context),
                   child: Text("Create project")),

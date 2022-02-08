@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:superwoman/pages/Projects/projects-page.dart';
 import 'package:superwoman/pages/Stakeholders/stakeholders-page.dart';
 import 'package:superwoman/pallete.dart';
-import 'package:superwoman/services/project.service.dart';
 import 'package:superwoman/service-locator.dart';
+import 'package:superwoman/services/project.service.dart';
 import 'package:superwoman/services/stakeholder.service.dart';
 import 'package:superwoman/widgets/display-card.dart';
 import 'package:superwoman/widgets/scaffold.dart';
@@ -16,31 +16,33 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
+
   int noProjects = 0;
   int noStakeholders = 0;
   double moneyRaised = 0;
   double averageFunds = 0;
 
-
   Future<bool> _getTabsData() async {
     noProjects = await locator<ProjectService>().getNoProjects();
     noStakeholders = await locator<StakeholderService>().getNoStakeholders();
     moneyRaised = await locator<ProjectService>().getMoneyRaised();
-    averageFunds = moneyRaised/noProjects;
+    averageFunds = moneyRaised / noProjects;
     return true;
   }
+
   _goToProjectsPage() {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => ProjectsPage()),
     );
   }
+
   _goToStakeholdersPage() {
     Navigator.push(
-    context,
-    MaterialPageRoute(builder: (context) => StakeholdersPage()),
-  );}
-
+      context,
+      MaterialPageRoute(builder: (context) => StakeholdersPage()),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,39 +61,43 @@ class _DashboardState extends State<Dashboard> {
                   crossAxisCount:
                       (size.width / (cardHeight * cardProportion)).round(),
                   children: [
-
                     DisplayCard(
-                      _buildTemplateCard(context, "Number of projects",
-                          noProjects.toString(), Icons.file_copy_outlined,
-                    () => _goToProjectsPage()),
+                      _buildTemplateCard(
+                          context,
+                          "Number of projects",
+                          noProjects.toString(),
+                          Icons.file_copy_outlined,
+                          () => _goToProjectsPage()),
                       Colors.green,
-
                     ),
                     DisplayCard(
-                        _buildTemplateCard(
-                            context,
-                            "Number of Stakeholders",
-                            noStakeholders.toString(),
-                            Icons.people_alt_outlined,
-                            () => _goToStakeholdersPage(),),
-                        Colors.red,
-                          ),
+                      _buildTemplateCard(
+                        context,
+                        "Number of Stakeholders",
+                        noStakeholders.toString(),
+                        Icons.people_alt_outlined,
+                        () => _goToStakeholdersPage(),
+                      ),
+                      Colors.red,
+                    ),
                     DisplayCard(
-                        _buildTemplateCard(
-                            context,
-                            "Total money raised",
-                            formatter.format(moneyRaised),
-                            Icons.attach_money,() => _goToProjectsPage()),
-                        Colors.cyan,
-                          ),
+                      _buildTemplateCard(
+                          context,
+                          "Total money raised",
+                          formatter.format(moneyRaised),
+                          Icons.attach_money,
+                          () => _goToProjectsPage()),
+                      Colors.cyan,
+                    ),
                     DisplayCard(
-                        _buildTemplateCard(
-                            context,
-                            "Average funds per project closed",
-                            formatter.format(averageFunds),
-                            Icons.attach_money,() => _goToProjectsPage()),
-                        Colors.orange,
-                          ),
+                      _buildTemplateCard(
+                          context,
+                          "Average funds per project",
+                          formatter.format(averageFunds),
+                          Icons.attach_money,
+                          () => _goToProjectsPage()),
+                      Colors.orange,
+                    ),
                   ],
                 ),
               ),
@@ -106,9 +112,8 @@ class _DashboardState extends State<Dashboard> {
     );
   }
 
-
-  Widget  _buildTemplateCard(
-      BuildContext context, String title, String description, IconData icon, Function onClick) {
+  Widget _buildTemplateCard(BuildContext context, String title,
+      String description, IconData icon, Function onClick) {
     Size size = MediaQuery.of(context).size;
     return GestureDetector(
       onTap: () => onClick(),
@@ -131,16 +136,19 @@ class _DashboardState extends State<Dashboard> {
             endIndent: 10,
           ),
           Padding(
-            padding: const EdgeInsets.only(bottom: 16.0),
+            padding: const EdgeInsets.only(bottom: 16.0, left: 16, right: 16),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  description,
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: cardTextColor,
-                      fontSize: 22),
+                Flexible(
+
+                  child: Text(
+                    description,
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: cardTextColor,
+                        fontSize: 18),
+                  ),
                 ),
                 SizedBox(
                   width: 6,
@@ -157,7 +165,4 @@ class _DashboardState extends State<Dashboard> {
       ),
     );
   }
-
-
-
 }

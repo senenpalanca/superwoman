@@ -17,6 +17,7 @@ const TextStyle titleInputStyle = const TextStyle(
   fontWeight: FontWeight.bold,
 );
 const TextStyle linkStyle = const TextStyle(color: Colors.blue);
-const TextStyle TextDateStyle = const TextStyle(color: Colors.black, fontSize: 20);
+const TextStyle TextDateStyle =
+    const TextStyle(color: Colors.black, fontSize: 20);
 
 final formatter = new NumberFormat("#,##0.00", "en_US");

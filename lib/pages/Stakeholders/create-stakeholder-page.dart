@@ -1,11 +1,9 @@
-import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:superwoman/model/project.dart';
 import 'package:superwoman/model/stakeholder.dart';
 import 'package:superwoman/pallete.dart';
-import 'package:superwoman/services/project.service.dart';
 import 'package:superwoman/service-locator.dart';
-import 'package:superwoman/widgets/avatar-selector.dart';
+import 'package:superwoman/services/project.service.dart';
 import 'package:superwoman/widgets/text-input.dart';
 
 import '../../services/stakeholder.service.dart';
@@ -28,7 +26,6 @@ class _CreateStakeholderPageState extends State<CreateStakeholderPage> {
 
   void createStakeholder(BuildContext context) async {
     if (_formKey.currentState!.validate()) {
-
       Stakeholder stakeholder = new Stakeholder();
       stakeholder.name = nameController.text;
       stakeholder.webLink = webLinkController.text;
@@ -191,23 +188,25 @@ class _CreateStakeholderPageState extends State<CreateStakeholderPage> {
                       ],
                     ),
                     SizedBox(height: 10),
-                    projects.length == 0 ? Text("None selected") : Wrap(
-                      children: projects
-                          .map((e) => Padding(
-                                padding: const EdgeInsets.all(4.0),
-                                child: Chip(
-                                  label: Text(e.name ?? ""),
-                                ),
-                              ))
-                          .toList(),
-                    ),
+                    projects.length == 0
+                        ? Text("None selected")
+                        : Wrap(
+                            children: projects
+                                .map((e) => Padding(
+                                      padding: const EdgeInsets.all(4.0),
+                                      child: Chip(
+                                        label: Text(e.name ?? ""),
+                                      ),
+                                    ))
+                                .toList(),
+                          ),
                   ],
                 ),
               ),
             ),
             Divider(),
             Padding(
-              padding: EdgeInsets.all(size.height*0.02),
+              padding: EdgeInsets.all(size.height * 0.02),
               child: ElevatedButton(
                   onPressed: () => createStakeholder(context),
                   child: Text("Register stakeholder")),

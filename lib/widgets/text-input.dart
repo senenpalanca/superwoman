@@ -41,9 +41,9 @@ class _TextInputState extends State<TextInput> {
           child: Center(
             child: TextFormField(
               validator: (value) {
-                if(value != null){
+                if (value != null) {
                   bool cond = widget.regexp!.hasMatch(value);
-                  if(!cond){
+                  if (!cond) {
                     return widget.errorMsg;
                   }
                 }

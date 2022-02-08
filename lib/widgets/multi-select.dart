@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:superwoman/model/project.dart';
 
-
 class MultiSelect extends StatefulWidget {
   final List<Project> items;
   const MultiSelect({Key? key, required this.items}) : super(key: key);
@@ -11,23 +10,19 @@ class MultiSelect extends StatefulWidget {
 }
 
 class _MultiSelectState extends State<MultiSelect> {
-
   final List<Project> _selectedItems = [];
-
 
   void _itemChange(Project itemValue, bool? isSelected) {
     setState(() {
-      if(isSelected != null){
+      if (isSelected != null) {
         if (isSelected) {
           _selectedItems.add(itemValue);
         } else {
           _selectedItems.remove(itemValue);
         }
       }
-
     });
   }
-
 
   void _cancel() {
     Navigator.pop(context);
@@ -54,7 +49,6 @@ class _MultiSelectState extends State<MultiSelect> {
               style: TextStyle(fontSize: 12),
             ),
             onPressed: _all,
-
           ),
         ],
       ),
@@ -62,11 +56,11 @@ class _MultiSelectState extends State<MultiSelect> {
         child: ListBody(
           children: widget.items
               .map((item) => CheckboxListTile(
-            value: _selectedItems.contains(item),
-            title: Text(item.name??""),
-            controlAffinity: ListTileControlAffinity.leading,
-            onChanged: (isChecked) => _itemChange(item, isChecked),
-          ))
+                    value: _selectedItems.contains(item),
+                    title: Text(item.name ?? ""),
+                    controlAffinity: ListTileControlAffinity.leading,
+                    onChanged: (isChecked) => _itemChange(item, isChecked),
+                  ))
               .toList(),
         ),
       ),
@@ -80,7 +74,6 @@ class _MultiSelectState extends State<MultiSelect> {
         ElevatedButton(
           child: const Text('Acept'),
           onPressed: _submit,
-
         ),
       ],
     );

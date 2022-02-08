@@ -15,8 +15,7 @@ class Stakeholder {
     this.webLink,
     this.amount,
     this.projects,
-  }
-  );
+  });
 
   Stakeholder.fromData({
     this.id,
