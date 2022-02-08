@@ -27,7 +27,8 @@ class _CreateStakeholderPageState extends State<CreateStakeholderPage> {
   final _formKey = GlobalKey<FormState>();
 
   void createStakeholder(BuildContext context) async {
-    if ((_formKey.currentState?.validate() ?? false)) {
+    if (_formKey.currentState!.validate()) {
+
       Stakeholder stakeholder = new Stakeholder();
       stakeholder.name = nameController.text;
       stakeholder.webLink = webLinkController.text;

@@ -16,6 +16,7 @@ class StakeholdersPage extends StatefulWidget {
 }
 
 class _StakeholdersPageState extends State<StakeholdersPage> {
+
   @override
   Widget build(BuildContext context) {
     return MyScaffold(

@@ -32,7 +32,7 @@ class _TextInputState extends State<TextInput> {
     return Padding(
         padding: const EdgeInsets.symmetric(vertical: 10.0),
         child: Container(
-          height: isInvalid ? size.height * 0.096 : null,
+          //height: isInvalid ? size.height * 0.096 : null,
           //width: size.width * 0.8,
           decoration: BoxDecoration(
             //color: Colors.grey[300].withOpacity(0.5),
@@ -41,21 +41,12 @@ class _TextInputState extends State<TextInput> {
           child: Center(
             child: TextFormField(
               validator: (value) {
-                if (value != null) {
+                if(value != null){
                   bool cond = widget.regexp!.hasMatch(value);
-
-                  if (!cond) {
-                    setState(() {
-                      isInvalid = true;
-                    });
+                  if(!cond){
                     return widget.errorMsg;
-                  } else {
-                    setState(() {
-                      isInvalid = false;
-                    });
                   }
                 }
-
                 return null;
               },
               controller: widget.controller,
