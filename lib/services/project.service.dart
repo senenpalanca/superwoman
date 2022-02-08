@@ -32,5 +32,15 @@ class ProjectService{
 
     return x.docs.length;
   }
+  getMoneyRaised() async {
 
+    var x = await FirebaseFirestore.instance
+        .collection(collection)
+        .get();
+
+    List projects =  x.docs.map((e) => Project.fromMap(e.data())).toList();
+    double sum = 0;
+    projects.forEach((element) {sum += element.budget;});
+    return sum;
+  }
 }
