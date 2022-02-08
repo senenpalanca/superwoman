@@ -7,10 +7,18 @@ class ProjectService {
   final uuid = Uuid();
 
   saveProject(Project project) async {
+    project.id = uuid.v1();
     await FirebaseFirestore.instance
         .collection(collection)
         .doc(project.id)
         .set(project.toMap());
+  }
+
+  deleteProject(Project project) async {
+    await FirebaseFirestore.instance
+        .collection(collection)
+        .doc(project.id)
+        .delete();
   }
 
   getAll() async {

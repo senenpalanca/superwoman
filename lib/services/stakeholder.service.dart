@@ -7,10 +7,18 @@ class StakeholderService {
   final uuid = Uuid();
 
   saveStakeholder(Stakeholder stakeholder) async {
+    stakeholder.id = uuid.v1();
     await FirebaseFirestore.instance
         .collection(collection)
         .doc(stakeholder.id)
         .set(stakeholder.toMap());
+  }
+
+  deleteStakeholder(Stakeholder stakeholder) async {
+    await FirebaseFirestore.instance
+        .collection(collection)
+        .doc(stakeholder.id)
+        .delete();
   }
 
   getAll() async {

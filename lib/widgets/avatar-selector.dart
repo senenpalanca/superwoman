@@ -18,13 +18,10 @@ class AvatarSelector extends StatefulWidget {
 class _AvatarSelectorState extends State<AvatarSelector> {
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    double margin = size.width * 0.2;
     return GestureDetector(
       onTap: () => _showBottomSheet(),
       child: Stack(
         children: [
-          // Container(width: 120, height: 120,),
           CircleAvatar(
             radius: 60.0,
             backgroundColor: Colors.grey,

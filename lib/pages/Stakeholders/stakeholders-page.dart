@@ -3,6 +3,7 @@ import 'package:superwoman/pages/Stakeholders/create-stakeholder-page.dart';
 import 'package:superwoman/services/stakeholder.service.dart';
 import 'package:superwoman/widgets/scaffold.dart';
 
+import '../../model/stakeholder.dart';
 import '../../service-locator.dart';
 
 class StakeholdersPage extends StatefulWidget {
@@ -81,6 +82,10 @@ class _StakeholdersPageState extends State<StakeholdersPage> {
                       numeric: false,
                       tooltip: "Number of projects",
                     ),
+                    DataColumn(
+                      label: Text("DELETE"),
+                      numeric: false,
+                    ),
                   ],
                   rows: stakeholders
                       .map(
@@ -104,6 +109,10 @@ class _StakeholdersPageState extends State<StakeholdersPage> {
                             Text(
                                 (stakeholder.projects?.length ?? 0).toString()),
                           ),
+                          DataCell(IconButton(
+                            icon: Icon(Icons.clear),
+                            onPressed: () => _deleteStakeholder(stakeholder),
+                          )),
                         ]),
                       )
                       .toList(),
@@ -131,5 +140,10 @@ class _StakeholdersPageState extends State<StakeholdersPage> {
       context,
       MaterialPageRoute(builder: (context) => const CreateStakeholderPage()),
     ).then((value) => setState(() {}));
+  }
+
+  _deleteStakeholder(Stakeholder stakeholder) async {
+    await locator<StakeholderService>().deleteStakeholder(stakeholder);
+    setState(() {});
   }
 }

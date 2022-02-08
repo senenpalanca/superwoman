@@ -4,6 +4,8 @@ import 'package:superwoman/pages/Projects/create-project-page.dart';
 import 'package:superwoman/services/project.service.dart';
 import 'package:superwoman/widgets/scaffold.dart';
 
+import '../../model/project.dart';
+import '../../pallete.dart';
 import '../../service-locator.dart';
 
 class ProjectsPage extends StatefulWidget {
@@ -82,6 +84,10 @@ class _ProjectsPageState extends State<ProjectsPage> {
                       numeric: false,
                       tooltip: "Finish date of the project",
                     ),
+                    DataColumn(
+                      label: Text("DELETE"),
+                      numeric: false,
+                    ),
                   ],
                   rows: projects
                       .map(
@@ -93,7 +99,10 @@ class _ProjectsPageState extends State<ProjectsPage> {
                             Text(project.description),
                           ),
                           DataCell(
-                            Text(project.webLink),
+                            Text(
+                              project.webLink,
+                              style: linkStyle,
+                            ),
                           ),
                           DataCell(
                             Text("${project.budget} \$"),
@@ -104,6 +113,10 @@ class _ProjectsPageState extends State<ProjectsPage> {
                                 : formatDate(project.closingDate,
                                     [dd, '/', mm, '/', yyyy])),
                           ),
+                          DataCell(IconButton(
+                            icon: Icon(Icons.clear),
+                            onPressed: () => _deleteProject(project),
+                          )),
                         ]),
                       )
                       .toList(),
@@ -131,5 +144,10 @@ class _ProjectsPageState extends State<ProjectsPage> {
       context,
       MaterialPageRoute(builder: (context) => const CreateProjectPage()),
     ).then((value) => setState(() {}));
+  }
+
+  _deleteProject(Project project) async {
+    await locator<ProjectService>().deleteProject(project);
+    setState(() {});
   }
 }

@@ -16,7 +16,6 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
-
   int noProjects = 0;
   int noStakeholders = 0;
   double moneyRaised = 0;
@@ -26,7 +25,7 @@ class _DashboardState extends State<Dashboard> {
     noProjects = await locator<ProjectService>().getNoProjects();
     noStakeholders = await locator<StakeholderService>().getNoStakeholders();
     moneyRaised = await locator<ProjectService>().getMoneyRaised();
-    averageFunds = moneyRaised / noProjects;
+    averageFunds = noProjects > 0 ? moneyRaised / noProjects : 0;
     return true;
   }
 
@@ -46,7 +45,6 @@ class _DashboardState extends State<Dashboard> {
 
   @override
   Widget build(BuildContext context) {
-    _getTabsData();
     Size size = MediaQuery.of(context).size;
     return MyScaffold(
       showTitle: "ONG Dashboard",
@@ -141,7 +139,6 @@ class _DashboardState extends State<Dashboard> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Flexible(
-
                   child: Text(
                     description,
                     style: TextStyle(

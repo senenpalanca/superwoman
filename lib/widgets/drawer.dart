@@ -22,15 +22,7 @@ class _MyDrawerState extends State<MyDrawer> {
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
-          const DrawerHeader(
-            decoration: BoxDecoration(
-              color: backgroundColor,
-            ),
-            child: Text(
-              'ONG Dashboard',
-              style: TextStyle(color: titleColor),
-            ),
-          ),
+          _buildHeader(),
           _buildTile("Dashboard", Icons.admin_panel_settings, Dashboard()),
           _buildTile("Projects", Icons.file_copy, ProjectsPage()),
           _buildTile("Stakeholders", Icons.group, StakeholdersPage()),
@@ -61,6 +53,29 @@ class _MyDrawerState extends State<MyDrawer> {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => page),
+    );
+  }
+
+  _buildHeader() {
+    return DrawerHeader(
+      decoration: BoxDecoration(
+        color: backgroundColor,
+      ),
+      child: Stack(
+        children: [
+          Positioned(
+            bottom: 12.0,
+            left: 16.0,
+            child: Text(
+              'ONG Dashboard',
+              style: TextStyle(
+                color: titleColor,
+                fontSize: 18,
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
