@@ -48,7 +48,6 @@ class _TextInputState extends State<TextInput> {
               },
               controller: widget.controller,
               decoration: InputDecoration(
-
                 filled: true,
                 fillColor: Colors.grey[300]?.withOpacity(0.5),
                 border: InputBorder.none,

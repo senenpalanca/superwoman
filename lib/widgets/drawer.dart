@@ -66,7 +66,7 @@ class _MyDrawerState extends State<MyDrawer> {
           Positioned(
             bottom: 12.0,
             left: 16.0,
-            child: Text(
+            child: const Text(
               'ONG Dashboard',
               style: TextStyle(
                 color: titleColor,

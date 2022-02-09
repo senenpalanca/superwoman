@@ -27,11 +27,11 @@ class _AvatarSelectorState extends State<AvatarSelector> {
             backgroundColor: Colors.grey,
             backgroundImage: NetworkImage(widget.image),
           ),
-          Positioned(
+          const Positioned(
               right: 0,
               bottom: 0,
               child: CircleButton(
-                iconData: Icons.repeat,
+                iconData: Icons.find_replace,
               ))
         ],
       ),
@@ -47,8 +47,8 @@ class _AvatarSelectorState extends State<AvatarSelector> {
               child: new Wrap(
                 children: <Widget>[
                   new ListTile(
-                      leading: new Icon(Icons.photo_library),
-                      title: new Text('Select from Gallery'),
+                      leading: const Icon(Icons.photo_library),
+                      title: const Text('Select from Gallery'),
                       onTap: () {
                         _uploadImgFromGallery();
                         Navigator.of(context).pop();
