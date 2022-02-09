@@ -105,7 +105,7 @@ class _ProjectsPageState extends State<ProjectsPage> {
                             ),
                           ),
                           DataCell(
-                            Text("${project.budget} \$"),
+                            Text("${project.budget} \u{20AC}"),
                           ),
                           DataCell(
                             Text(project.closingDate == null

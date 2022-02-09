@@ -94,6 +94,7 @@ class _CreateProjectPageState extends State<CreateProjectPage> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    const double separation = 5;
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -101,7 +102,7 @@ class _CreateProjectPageState extends State<CreateProjectPage> {
         iconTheme: IconThemeData(
           color: Colors.black, //change your color here
         ),
-        title: Text(
+        title: const Text(
           "Create project",
           style: TextStyle(color: backgroundColor),
         ),
@@ -119,13 +120,13 @@ class _CreateProjectPageState extends State<CreateProjectPage> {
                   //crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
-                      height: 10,
+                      height: separation,
                     ),
                     Center(
                       child: AvatarSelector(imageUrl),
                     ),
                     SizedBox(
-                      height: 10,
+                      height: separation,
                     ),
                     const Text(
                       "Name",
@@ -135,11 +136,11 @@ class _CreateProjectPageState extends State<CreateProjectPage> {
                       "Name",
                       nameController,
                       icon: Icons.drive_file_rename_outline,
-                      regexp: RegExp(r".{5,20}$"),
+                      regexp: RegExp(r".{5,50}$"),
                       errorMsg:
-                          "Project name must be between five and 20 characters long",
+                          "Project name must be between five and 50 characters long",
                     ),
-                    SizedBox(height: 10),
+                    SizedBox(height: separation),
                     const Text(
                       "Link",
                       style: titleInputStyle,
@@ -148,11 +149,11 @@ class _CreateProjectPageState extends State<CreateProjectPage> {
                       "Link",
                       webLinkController,
                       icon: Icons.link,
-                      regexp: RegExp(r".{5,100}$"),
+                      regexp: RegExp(r"^[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,6}$"),
                       errorMsg:
-                          "Link must be between five and 100 characters long",
+                          "Link must have link format (Ex. www.google.com)",
                     ),
-                    SizedBox(height: 10),
+                    SizedBox(height: separation),
                     const Text(
                       "Description",
                       style: titleInputStyle,
@@ -163,8 +164,9 @@ class _CreateProjectPageState extends State<CreateProjectPage> {
                       icon: Icons.insert_drive_file,
                       regexp: RegExp(r".{0,200}$"),
                       errorMsg: "Only can be up to 200 characters long",
+                      multiLine: true,
                     ),
-                    SizedBox(height: 10),
+                    SizedBox(height: separation),
                     const Text(
                       "Budget",
                       style: titleInputStyle,
@@ -172,12 +174,12 @@ class _CreateProjectPageState extends State<CreateProjectPage> {
                     TextInput(
                       "Budget",
                       budgetController,
-                      icon: Icons.attach_money,
+                      icon: Icons.euro,
                       inputType: TextInputType.number,
-                      regexp: RegExp(r".{1,10}$"),
-                      errorMsg: "Cannot be empty and must be a number",
+                      regexp: RegExp(r"^[0-9]{1,20}([.][0-9]{1,20})?$"),
+                      errorMsg: "Must be a number. Use dots(.) for decimals.",
                     ),
-                    SizedBox(height: 10),
+                    SizedBox(height: separation),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -189,7 +191,7 @@ class _CreateProjectPageState extends State<CreateProjectPage> {
                             onPressed: () => changeClosingDate(),
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: Text("Change"),
+                              child: const Text("Change"),
                             )),
                       ],
                     ),
@@ -197,17 +199,17 @@ class _CreateProjectPageState extends State<CreateProjectPage> {
                       formatDate(closingDate, [dd, '/', mm, '/', yyyy]),
                       style: TextDateStyle,
                     ),
-                    SizedBox(height: 10),
+                    SizedBox(height: separation),
                   ],
                 ),
               ),
             ),
             Divider(),
             Padding(
-              padding: EdgeInsets.all(size.height * 0.02),
+              padding: EdgeInsets.all(size.height * 0.015),
               child: ElevatedButton(
                   onPressed: () => createProject(context),
-                  child: Text("Create project")),
+                  child: const Text("Create project")),
             )
           ],
         ),

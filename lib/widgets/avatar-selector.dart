@@ -23,7 +23,7 @@ class _AvatarSelectorState extends State<AvatarSelector> {
       child: Stack(
         children: [
           CircleAvatar(
-            radius: 60.0,
+            radius: 50.0,
             backgroundColor: Colors.grey,
             backgroundImage: NetworkImage(widget.image),
           ),

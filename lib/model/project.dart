@@ -3,7 +3,7 @@ class Project {
   String? name;
   String? webLink;
   String? description;
-  String? image;
+  String? image; //Firebase Storage Link
   double? budget;
   DateTime? closingDate;
 

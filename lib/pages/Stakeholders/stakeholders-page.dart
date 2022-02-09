@@ -103,7 +103,7 @@ class _StakeholdersPageState extends State<StakeholdersPage> {
                             ),
                           ),
                           DataCell(
-                            Text(" ${stakeholder.amount} \$"),
+                            Text(" ${stakeholder.amount} \u{20AC}"),
                           ),
                           DataCell(
                             Text(

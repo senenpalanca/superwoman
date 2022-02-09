@@ -15,12 +15,12 @@ class StorageService {
       {String mimeType = "image/png"}) async {
     final Reference ref = _storage.ref().child(name);
     try {
-      // Create your custom metadata.
+
       SettableMetadata metadata = SettableMetadata(contentType: mimeType);
 
       final UploadTask uploadTask = ref.putData(f, metadata);
 
-      //Get task progress
+
       uploadTask.snapshotEvents.listen(
         (snapshot) {
           final progress = (snapshot.bytesTransferred / snapshot.totalBytes);

@@ -8,7 +8,8 @@ class TextInput extends StatefulWidget {
       this.inputType,
       this.inputAction,
       this.regexp,
-      this.errorMsg})
+      this.errorMsg,
+      this.multiLine})
       : super(key: key);
 
   final IconData? icon;
@@ -18,6 +19,7 @@ class TextInput extends StatefulWidget {
   final TextEditingController controller;
   final RegExp? regexp;
   final String? errorMsg;
+  final bool? multiLine;
 
   @override
   State<TextInput> createState() => _TextInputState();
@@ -30,14 +32,9 @@ class _TextInputState extends State<TextInput> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Padding(
-        padding: const EdgeInsets.symmetric(vertical: 10.0),
+        padding:const EdgeInsets.symmetric(vertical: 2.0),
         child: Container(
-          //height: isInvalid ? size.height * 0.096 : null,
-          //width: size.width * 0.8,
-          decoration: BoxDecoration(
-            //color: Colors.grey[300].withOpacity(0.5),
-            borderRadius: BorderRadius.circular(16),
-          ),
+          height:  widget.multiLine??false ? size.height * 0.096 * 2 : size.height * 0.096  ,
           child: Center(
             child: TextFormField(
               validator: (value) {
@@ -51,16 +48,14 @@ class _TextInputState extends State<TextInput> {
               },
               controller: widget.controller,
               decoration: InputDecoration(
-                // contentPadding: EdgeInsets.only(left: 20),
+
                 filled: true,
                 fillColor: Colors.grey[300]?.withOpacity(0.5),
-                // isDense: true,
                 border: InputBorder.none,
-
                 prefixIcon: widget.icon == null
                     ? null
                     : Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                        padding: const EdgeInsets.symmetric(horizontal: 20.0) ,
                         child: Icon(
                           widget.icon,
                           size: 28,
@@ -89,8 +84,10 @@ class _TextInputState extends State<TextInput> {
                 ),
               ),
               style: TextStyle(fontSize: 18, color: Colors.grey, height: 1.5),
-              keyboardType: widget.inputType,
+              keyboardType: widget.multiLine??false ? TextInputType.multiline : widget.inputType,
+              maxLines: widget.multiLine??false ? 3 : 1,
               textInputAction: widget.inputAction,
+
             ),
           ),
         ));

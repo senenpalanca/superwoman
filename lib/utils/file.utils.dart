@@ -14,7 +14,6 @@ class FileUtils {
   }
 
   static Future<File> writeFile(String text) async {
-    // final directory = await getApplicationDocumentsDirectory();
     File file = File('${new DateTime.now().millisecondsSinceEpoch}.csv');
     return file.writeAsString(text);
   }

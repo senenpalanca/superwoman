@@ -48,7 +48,7 @@ class _CreateStakeholderPageState extends State<CreateStakeholderPage> {
           content: SingleChildScrollView(
             child: ListBody(
               children: const <Widget>[
-                Text('Stakeholder registered successfully.'),
+                const Text('Stakeholder registered successfully.'),
               ],
             ),
           ),
@@ -93,6 +93,7 @@ class _CreateStakeholderPageState extends State<CreateStakeholderPage> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    const double separation = 5;
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -100,7 +101,7 @@ class _CreateStakeholderPageState extends State<CreateStakeholderPage> {
         iconTheme: IconThemeData(
           color: Colors.black, //change your color here
         ),
-        title: Text(
+        title: const Text(
           "Register stakeholder",
           style: TextStyle(color: backgroundColor),
         ),
@@ -118,7 +119,7 @@ class _CreateStakeholderPageState extends State<CreateStakeholderPage> {
                   //crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
-                      height: 10,
+                      height: separation,
                     ),
                     const Text(
                       "Name",
@@ -132,7 +133,7 @@ class _CreateStakeholderPageState extends State<CreateStakeholderPage> {
                       errorMsg:
                           "Stakeholder name must be between five and 20 characters long",
                     ),
-                    SizedBox(height: 10),
+                    SizedBox(height: separation),
                     const Text(
                       "Link",
                       style: titleInputStyle,
@@ -141,11 +142,11 @@ class _CreateStakeholderPageState extends State<CreateStakeholderPage> {
                       "Link",
                       webLinkController,
                       icon: Icons.link,
-                      regexp: RegExp(r".{5,50}$"),
+                      regexp: RegExp(r".{5,100}$"),
                       errorMsg:
-                          "Link must be between five  and 50 characters long",
+                          "Link must be between five  and 100 characters long",
                     ),
-                    SizedBox(height: 10),
+                    SizedBox(height: separation),
                     const Text(
                       "Email",
                       style: titleInputStyle,
@@ -159,7 +160,7 @@ class _CreateStakeholderPageState extends State<CreateStakeholderPage> {
                       errorMsg: "Must have email type format",
                       inputType: TextInputType.emailAddress,
                     ),
-                    SizedBox(height: 10),
+                    SizedBox(height: separation),
                     const Text(
                       "Amount",
                       style: titleInputStyle,
@@ -167,29 +168,29 @@ class _CreateStakeholderPageState extends State<CreateStakeholderPage> {
                     TextInput(
                       "Amount",
                       amountController,
-                      icon: Icons.attach_money,
+                      icon: Icons.euro,
                       inputType: TextInputType.number,
                       regexp: RegExp(r"^[0-9]{1,20}([.][0-9]{1,20})?$"),
-                      errorMsg: "Must be a number. Commas cannot be used.",
+                      errorMsg: "Must be a number. Use dots(.) for decimals.",
                     ),
-                    SizedBox(height: 10),
+                    SizedBox(height: separation),
                     //Falta que se puedan seleccionar varios proyectos
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
+                        const Text(
                           "Projects",
                           style: titleInputStyle,
                         ),
                         TextButton(
                           onPressed: () => _showAddProjectsDialog(),
-                          child: Text("Add project(s)"),
+                          child: const Text("Add project(s)"),
                         ),
                       ],
                     ),
-                    SizedBox(height: 10),
+                    SizedBox(height: separation),
                     projects.length == 0
-                        ? Text("None selected")
+                        ? const Text("None selected")
                         : Wrap(
                             children: projects
                                 .map((e) => Padding(
